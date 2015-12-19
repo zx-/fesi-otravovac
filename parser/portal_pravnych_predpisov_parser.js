@@ -16,6 +16,14 @@ module.exports = function ( args ) {
 
     }
 
+    function dateFromString(date){
+
+        date = date.replace(/\s+/g, '');
+        var dateParts = date.split(".");
+        return new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+    }
+
     function parse (doc) {
 
         var $ = cheerio.load(doc);
@@ -29,10 +37,11 @@ module.exports = function ( args ) {
             var material = {
 
                 name : $($(element).find('a')[0]).text(),
-                date : $(tds[2]).text(),
+                date : dateFromString($(tds[2]).text()),
                 state : $($(tds[3]).find('img')[0]).attr('title'),
                 publisher : $(tds[4]).text(),
-                href : absoluteUrlFromElement( $($(element).find('a')[0]) )
+                href : absoluteUrlFromElement( $($(element).find('a')[0]) ),
+                site: 1
 
             };
 

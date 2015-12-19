@@ -8,19 +8,19 @@ module.exports = function ( sequelize ) {
 
     var Material = sequelize.define('material', {
         name: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         date: {
             type: Sequelize.DATE
         },
         state:{
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         publisher:{
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         href:{
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         site: {
             type: Sequelize.INTEGER
