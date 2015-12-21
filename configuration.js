@@ -9,3 +9,4 @@ FESIO.portal_pravnych_predpisov = {
     parse_url: 'https://lt.justice.gov.sk/Public/AllMaterialsList.aspx?instEID=-1&lCategories=1048574&langEID=1'
 };
 
+FESIO.server = {};

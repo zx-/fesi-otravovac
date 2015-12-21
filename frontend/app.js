@@ -5,21 +5,25 @@
 var app = angular.module('fesi-otravovac-app',[
 
     'ngRoute',
-    'controllers'
+    'controllers',
+    'restangular'
 
 ]);
 
 app.config([
 
     '$routeProvider',
+    'RestangularProvider',
 
-    function ( $routeProvider ) {
+    function ( $routeProvider, RestangularProvider ) {
 
         $routeProvider.
             when('/', {
                 templateUrl:'ang-app/templates/home.html',
                 controller: 'home'
-            })
+            });
+
+        RestangularProvider.setBaseUrl('http://localhost:8080/api');
     }
 
 ]);

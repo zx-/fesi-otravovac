@@ -3,9 +3,17 @@
  */
 controllers.controller('home',[
 
-    function ( ) {
+    '$scope',
+    'Restangular',
 
+    function ( $scope, Restangular ) {
 
+        $scope.materials = [];
+
+        Restangular.all('material').getList().then(
+            function(resp){ $scope.materials = resp;},
+            function(resp){ console.log(resp);}
+        )
 
     }
 

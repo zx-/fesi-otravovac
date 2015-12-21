@@ -1,1 +1,16 @@
 <h1>Hello</h1>
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>date</th>
+        <th>state</th>
+        <th>publisher</th>
+    </tr>
+    <tr ng-repeat="material in materials">
+        <td><a href="{{material.href}}">{{material.name}}</a></td>
+        <td>{{material.date}}</td>
+        <td>{{material.state}}</td>
+        <td>{{material.publisher}}</td>
+    </tr>
+</table>
