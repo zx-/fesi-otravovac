@@ -13,7 +13,7 @@ var sequelize = new Sequelize(DB_CFG.conString);
 var pppMaterial = require('./model/pppMaterial')(sequelize);
 
 // PARSERS
-var p1 = require('./parser/portal_pravnych_predpisov_parser.js')(FESIO.portal_pravnych_predpisov);
+var p1 = require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov);
 
 
 
