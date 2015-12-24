@@ -6,7 +6,7 @@ var Sequelize = require('sequelize');
 
 module.exports = function ( sequelize ) {
 
-    var Material = sequelize.define('material', {
+    var pppMaterial = sequelize.define('pppmaterial', {
         name: {
             type: Sequelize.TEXT
         },
@@ -21,15 +21,12 @@ module.exports = function ( sequelize ) {
         },
         href:{
             type: Sequelize.TEXT
-        },
-        site: {
-            type: Sequelize.INTEGER
         }
 
     }, {
         freezeTableName: true // Model tableName will be the same as the model name
     });
 
-    return Material;
+    return pppMaterial;
 
 };

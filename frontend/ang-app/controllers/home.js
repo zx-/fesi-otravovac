@@ -10,7 +10,7 @@ controllers.controller('home',[
 
         $scope.materials = [];
 
-        Restangular.all('material').getList().then(
+        Restangular.all('pppMaterial').getList().then(
             function(resp){ $scope.materials = resp;},
             function(resp){ console.log(resp);}
         )

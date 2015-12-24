@@ -10,7 +10,7 @@ var DB_CFG = require('./db_config.js');
 // MODEL
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
-var Material = require('./model/material')(sequelize);
+var pppMaterial = require('./model/pppMaterial')(sequelize);
 
 // PARSERS
 var p1 = require('./parser/portal_pravnych_predpisov_parser.js')(FESIO.portal_pravnych_predpisov);
@@ -21,7 +21,7 @@ p1.parse(function(res){
 
     for(var i = 0; i < res.length; i++) {
 
-        Material.create(res[i]);
+        pppMaterial.create(res[i]);
 
     }
 

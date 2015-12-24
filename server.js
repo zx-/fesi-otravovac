@@ -11,7 +11,7 @@ var FESIO = require('./configuration.js');
 // MODEL
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
-var Material = require('./model/material')(sequelize);
+var pppMaterial = require('./model/pppMaterial')(sequelize);
 
 // server
 
@@ -31,9 +31,9 @@ var port = FESIO.server.port || 8080;
 //
 //});
 
-app.get('/api/material', function(req,res){
+app.get('/api/pppMaterial', function(req,res){
 
-        Material.findAll({
+    pppMaterial.findAll({
             order: [['date','DESC']],
             limit: 10
         }).then(

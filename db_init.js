@@ -7,9 +7,9 @@ var Sequelize = require('sequelize');
 
 var sequelize = new Sequelize(DB_CFG.conString);
 
-var Material = require('./model/material')(sequelize);
+var pppMaterial = require('./model/pppMaterial')(sequelize);
 
-Material.sync({force: true}).then(function () {
+pppMaterial.sync({force: true}).then(function () {
 
     console.log('created');
 

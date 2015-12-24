@@ -20,7 +20,7 @@ module.exports = function ( args ) {
 
         date = date.replace(/\s+/g, '');
         var dateParts = date.split(".");
-        return new Date(dateParts[2], dateParts[1], dateParts[0]);
+        return new Date(dateParts[2], (dateParts[1]-1), (dateParts[0]));
 
     }
 
@@ -40,8 +40,7 @@ module.exports = function ( args ) {
                 date : dateFromString($(tds[2]).text()),
                 state : $($(tds[3]).find('img')[0]).attr('title'),
                 publisher : $(tds[4]).text(),
-                href : absoluteUrlFromElement( $($(element).find('a')[0]) ),
-                site: 1
+                href : absoluteUrlFromElement( $($(element).find('a')[0]) )
 
             };
 
