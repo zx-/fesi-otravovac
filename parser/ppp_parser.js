@@ -17,8 +17,6 @@ module.exports = function ( args ) {
 
     }
 
-
-
     function parse (doc) {
 
         var $ = cheerio.load(doc);

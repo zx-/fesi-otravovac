@@ -7,14 +7,24 @@ var Sequelize = require('sequelize');
 
 var sequelize = new Sequelize(DB_CFG.conString);
 
-var pppMaterial = require('./model/pppMaterial')(sequelize);
+var mats = [];
+mats.push(require('./model/pppMaterial')(sequelize));
+mats.push(require('./model/nkuMaterial')(sequelize));
+mats.push(require('./model/rokovaniaMaterial')(sequelize));
+mats.push(require('./model/uvoMaterial')(sequelize));
+mats.push(require('./model/supremeCourtMaterial')(sequelize));
 
-pppMaterial.sync({force: true}).then(function () {
+mats.forEach(function(el){
 
-    console.log('created');
+    el.sync({force: true}).then(function () {
 
-}, function(e){
+        console.log('created',el);
 
-    console.log(e);
+    }, function(e){
+
+        console.log(e);
+
+    });
 
 });
+

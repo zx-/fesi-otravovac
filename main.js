@@ -10,19 +10,34 @@ var DB_CFG = require('./db_config.js');
 // MODEL
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
-var pppMaterial = require('./model/pppMaterial')(sequelize);
-
-// PARSERS
-var p1 = require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov);
 
 
+var sites = {
+    ppp : {
 
-p1.parse(function(res){
+        parser : require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov),
+        model: require('./model/pppMaterial.js')(sequelize)
 
-    for(var i = 0; i < res.length; i++) {
-
-        pppMaterial.create(res[i]);
-
+    },
+    nku: {
+        parser: require('./parser/nku_parser.js')(FESIO.nku),
+        model: require('./model/nkuMaterial.js')(sequelize)
     }
+};
 
-});
+for(var p in sites) {
+
+    var site = sites[p];
+
+    site.parser.parse(function (res) {
+
+        for (var i = 0; i < res.length; i++) {
+
+            site.model.create(res[i]);
+
+        }
+
+    });
+
+}
+
