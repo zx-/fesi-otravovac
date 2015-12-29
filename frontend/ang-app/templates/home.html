@@ -9,7 +9,7 @@
     </tr>
     <tr ng-repeat="material in pppMaterials">
         <td><a href="{{material.href}}">{{material.name}}</a></td>
-        <td>{{material.date}}</td>
+        <td>{{getDateString(material.date)}}</td>
         <td>{{material.state}}</td>
         <td>{{material.publisher}}</td>
     </tr>
@@ -26,7 +26,7 @@
     </tr>
     <tr ng-repeat="material in nkuMaterials">
         <td><a href="{{material.href}}">{{material.name}}</a></td>
-        <td>{{material.date}}</td>
+        <td>{{getDateString(material.date)}}</td>
         <td><a href="{{material.publisherhref}}">{{material.publisher}}</a></td>
     </tr>
 </table>
