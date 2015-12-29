@@ -12,6 +12,7 @@ var FESIO = require('./configuration.js');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
 var pppMaterial = require('./model/pppMaterial')(sequelize);
+var nkuMaterial = require('./model/nkuMaterial')(sequelize);
 
 // server
 
@@ -50,6 +51,26 @@ app.get('/api/pppMaterial', function(req,res){
         );
 
     });
+
+app.get('/api/nkuMaterial', function(req,res){
+
+    nkuMaterial.findAll({
+        order: [['date','DESC']],
+        limit: 10
+    }).then(
+        function (a) {
+
+            res.json(a);
+
+        },
+        function (a) {
+
+            res.json(a);
+
+        }
+    );
+
+});
 
 
 app.get('*', function(req, res) {

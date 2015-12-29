@@ -1,4 +1,4 @@
-<h1>Hello</h1>
+<h1>PPP</h1>
 
 <table>
     <tr>
@@ -7,10 +7,26 @@
         <th>state</th>
         <th>publisher</th>
     </tr>
-    <tr ng-repeat="material in materials">
+    <tr ng-repeat="material in pppMaterials">
         <td><a href="{{material.href}}">{{material.name}}</a></td>
         <td>{{material.date}}</td>
         <td>{{material.state}}</td>
         <td>{{material.publisher}}</td>
+    </tr>
+</table>
+
+
+<h1>NKU</h1>
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>date</th>
+        <th>publisher</th>
+    </tr>
+    <tr ng-repeat="material in nkuMaterials">
+        <td><a href="{{material.href}}">{{material.name}}</a></td>
+        <td>{{material.date}}</td>
+        <td><a href="{{material.publisherhref}}">{{material.publisher}}</a></td>
     </tr>
 </table>

@@ -8,12 +8,19 @@ controllers.controller('home',[
 
     function ( $scope, Restangular ) {
 
-        $scope.materials = [];
+        $scope.pppMaterials = [];
 
         Restangular.all('pppMaterial').getList().then(
-            function(resp){ $scope.materials = resp;},
+            function(resp){ $scope.pppMaterials = resp;},
             function(resp){ console.log(resp);}
-        )
+        );
+
+        $scope.nkuMaterials = [];
+
+        Restangular.all('nkuMaterial').getList().then(
+            function(resp){ $scope.nkuMaterials = resp;},
+            function(resp){ console.log(resp);}
+        );
 
     }
 
