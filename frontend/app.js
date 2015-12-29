@@ -23,7 +23,7 @@ app.config([
                 controller: 'home'
             });
 
-        RestangularProvider.setBaseUrl('http://localhost:8080/api');
+        RestangularProvider.setBaseUrl('/api');
     }
 
 ]);
