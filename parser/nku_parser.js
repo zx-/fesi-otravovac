@@ -5,7 +5,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var helper = require('./helper');
-var curl = require('node-curl');
 
 module.exports = function ( args ) {
 
