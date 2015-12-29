@@ -33,11 +33,11 @@ for(var p in sites) {
 
         for (var i = 0; i < res.length; i++) {
 
-            site.model.create(res[i]);
+            this.create(res[i]);
 
         }
 
-    });
+    }.bind(site.model));
 
 }
 
