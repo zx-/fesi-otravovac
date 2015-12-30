@@ -1,87 +1,125 @@
-<h1>PPP</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Portál právnych predpisov</h3>
+    </div>
 
-<table>
-    <tr>
-        <th>name</th>
-        <th>date</th>
-        <th>state</th>
-        <th>publisher</th>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>name</th>
+                <th>date</th>
+                <th>state</th>
+                <th>publisher</th>
+            </tr>
+            <tr ng-repeat="material in pppMaterials">
+                <td><a href="{{material.href}}">{{material.name}}</a></td>
+                <td>{{getDateString(material.date)}}</td>
+                <td>{{material.state}}</td>
+                <td>{{material.publisher}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Najvyšší kontrolný úrad Slovenskej republiky </h3>
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>name</th>
+                <th>date</th>
+                <th>publisher</th>
+            </tr>
+            <tr ng-repeat="material in nkuMaterials">
+                <td><a href="{{material.href}}">{{material.name}}</a></td>
+                <td>{{getDateString(material.date)}}</td>
+                <td><a href="{{material.publisherhref}}">{{material.publisher}}</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Rokovania vlády SR</h3>
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>number</th>
+                <th>rokovanie</th>
+                <th>date</th>
+                <th>materials</th>
+                <th>recordings</th>
+                <th>resolution</th>
+            </tr>
+            <tr ng-repeat="material in rokovaniaMaterials">
+                <td>{{material.number}}</td>
+                <td>{{material.rokovanie}}</td>
+                <td>{{getDateString(material.date)}}</td>
+                <td><a href="{{material.materials}}" ng-show="material.materials != null">mat</a></td>
+                <td><a href="{{material.recordings}}" ng-show="material.recordings != null">rec</a></td>
+                <td><a href="{{material.resolution}}" ng-show="material.resolution != null">res</a></td>
     </tr>
-    <tr ng-repeat="material in pppMaterials">
-        <td><a href="{{material.href}}">{{material.name}}</a></td>
-        <td>{{getDateString(material.date)}}</td>
-        <td>{{material.state}}</td>
-        <td>{{material.publisher}}</td>
-    </tr>
-</table>
+        </table>
+    </div>
+</div>
 
 
-<h1>NKU</h1>
 
-<table>
-    <tr>
-        <th>name</th>
-        <th>date</th>
-        <th>publisher</th>
-    </tr>
-    <tr ng-repeat="material in nkuMaterials">
-        <td><a href="{{material.href}}">{{material.name}}</a></td>
-        <td>{{getDateString(material.date)}}</td>
-        <td><a href="{{material.publisherhref}}">{{material.publisher}}</a></td>
-    </tr>
-</table>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>NAJVYŠŠÍ SÚD - Tlačové správy</h3>
+    </div>
 
-<h1>Rokovania</h1>
-
-<table>
-    <tr>
-        <th>number</th>
-        <th>rokovanie</th>
-        <th>date</th>
-        <th>materials</th>
-        <th>recordings</th>
-        <th>resolution</th>
-    </tr>
-    <tr ng-repeat="material in rokovaniaMaterials">
-        <td>{{material.number}}</td>
-        <td>{{material.rokovanie}}</td>
-        <td>{{getDateString(material.date)}}</td>
-        <td><a href="{{material.materials}}" ng-show="material.materials != null">mat</a></td>
-        <td><a href="{{material.recordings}}" ng-show="material.recordings != null">rec</a></td>
-        <td><a href="{{material.resolution}}" ng-show="material.resolution != null">res</a></td>
-    </tr>
-</table>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>name</th>
+                <th>date</th>
+                <th>description</th>
+            </tr>
+            <tr ng-repeat="material in supremeCourtMaterials">
+                <td><a href="{{material.href}}">{{material.name}}</a></td>
+                <td>{{getDateString(material.date)}}</td>
+                <td>{{material.description}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 
-<h1>Supreme Court</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            Úrad pre verejné obstarávanie
+        </h3>
+    </div>
 
-<table>
-    <tr>
-        <th>name</th>
-        <th>date</th>
-        <th>description</th>
-    </tr>
-    <tr ng-repeat="material in supremeCourtMaterials">
-        <td><a href="{{material.href}}">{{material.name}}</a></td>
-        <td>{{getDateString(material.date)}}</td>
-        <td>{{material.description}}</td>
-    </tr>
-</table>
-
-<h1>uvoMaterial</h1>
-
-<ul ng-repeat="(k, v) in uvoMaterials | groupBy: 'type' ">
-    Type: {{types[k]}}
-    <li ng-repeat="(k2, v2) in v | groupBy: 'subtype' ">
-        Subtype: {{k2}}
-        <ul>
-            <li ng-repeat="material in v2">
-                name: <a href="{{material.href}}">{{material.name}}</a><br>
-                date: {{getDateString(material.date)}}<br>
-                description: {{material.description}}
+    <div class="panel-body">
+        <ul ng-repeat="(k, v) in uvoMaterials | groupBy: 'type' " class="list-style-none">
+            <h4>{{types[k]}}</h4>
+            <li ng-repeat="(k2, v2) in v | groupBy: 'subtype' ">
+                <p><b>{{k2}}</b></p>
+                <ul>
+                    <li ng-repeat="material in v2"  class="uvo-item" >
+                        name: <a href="{{material.href}}">{{material.name}}</a><br>
+                        date: {{getDateString(material.date)}}<br>
+                        description: {{material.description}}
+                    </li>
+                </ul>
             </li>
+
+
         </ul>
-    </li>
+    </div>
 
-
-</ul>
+</div>

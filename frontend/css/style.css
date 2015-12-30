@@ -1,0 +1,19 @@
+.page-header {
+    padding-left: 10px;
+}
+
+.panel-body h4{
+    border-bottom: 1px solid grey;
+}
+
+.list-style-none {
+    list-style-type: none;
+}
+
+.uvo-item {
+    margin-bottom: 5px;
+}
+
+.content {
+    padding: 0 2.5%;
+}

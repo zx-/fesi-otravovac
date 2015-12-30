@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="fesi-otravovac-app">
-<head>
     <meta charset="UTF-8">
     <title>Fesi otravovac</title>
+
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/lodash/lodash.min.js"></script>
@@ -14,6 +23,9 @@
 
 </head>
 <body>
-    <div ng-view></div>
+    <div class="page-header"><h1>Fesi-otravovac</h1></div>
+
+
+    <div ng-view class="content"></div>
 </body>
 </html>

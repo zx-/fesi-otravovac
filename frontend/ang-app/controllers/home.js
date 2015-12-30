@@ -17,9 +17,9 @@ controllers.controller('home',[
         }
 
         $scope.types = [];
-        $scope.types[6] = "Vyhlasenia o vyhlaseni ver. obst";
-        $scope.types[8] = "Vyhlasenia o zruseni ver. obst";
-        $scope.types[18] = "Uzavreti zmluvy";
+        $scope.types[6] = "Oznámenia o vyhlásení verejného obstarávania";
+        $scope.types[8] = "Oznámenie o zrušení verejného obstarávania";
+        $scope.types[18] = "Informácie o uzavretí zmluvy";
 
 
         $scope.getDateString = function (date) {
