@@ -7,7 +7,7 @@ module.exports = function ( sequelize ) {
 
     var rokovaniaMaterial = sequelize.define('rokovaniamaterial', {
         number:{
-            type: Sequelize.INTEGER
+            type: Sequelize.TEXT
         },
         rokovanie: {
             type: Sequelize.TEXT

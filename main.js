@@ -12,32 +12,55 @@ var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
 
 
-var sites = {
-    ppp : {
+function run () {
 
-        parser : require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov),
-        model: require('./model/pppMaterial.js')(sequelize)
+    var sites = {
+        ppp: {
 
-    },
-    nku: {
-        parser: require('./parser/nku_parser.js')(FESIO.nku),
-        model: require('./model/nkuMaterial.js')(sequelize)
-    }
-};
+            parser: require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov),
+            model: require('./model/pppMaterial.js')(sequelize)
 
-for(var p in sites) {
-
-    var site = sites[p];
-
-    site.parser.parse(function (res) {
-
-        for (var i = 0; i < res.length; i++) {
-
-            this.create(res[i]);
-
+        },
+        nku: {
+            parser: require('./parser/nku_parser.js')(FESIO.nku),
+            model: require('./model/nkuMaterial.js')(sequelize)
+        },
+        rokovania: {
+            parser: require('./parser/rokovania_parser.js')(FESIO.rokovania),
+            model: require('./model/rokovaniaMaterial.js')(sequelize)
         }
+    };
 
-    }.bind(site.model));
+    for (var p in sites) {
+
+        var site = sites[p];
+
+        site.parser.parse(function (res) {
+
+            for (var i = 0; i < res.length; i++) {
+
+                this.create(res[i]);
+
+            }
+
+        }.bind(site.model));
+
+    }
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+run();
