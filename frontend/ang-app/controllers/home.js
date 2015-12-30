@@ -36,6 +36,27 @@ controllers.controller('home',[
             function(resp){ console.log(resp);}
         );
 
+        $scope.rokovaniaMaterials = [];
+
+        Restangular.all('rokovaniaMaterial').getList().then(
+            function(resp){ $scope.rokovaniaMaterials = resp.map(createDate);},
+            function(resp){ console.log(resp);}
+        );
+
+        $scope.supremeCourtMaterials = [];
+
+        Restangular.all('supremeCourtMaterial').getList().then(
+            function(resp){ $scope.supremeCourtMaterials = resp.map(createDate);},
+            function(resp){ console.log(resp);}
+        );
+
+        $scope.uvoMaterials = [];
+
+        Restangular.all('uvoMaterial').getList().then(
+            function(resp){ $scope.uvoMaterials = resp.map(createDate);},
+            function(resp){ console.log(resp);}
+        );
+
     }
 
 ]);

@@ -11,9 +11,12 @@ var FESIO = require('./configuration.js');
 // MODEL
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
+
 var pppMaterial = require('./model/pppMaterial')(sequelize);
 var nkuMaterial = require('./model/nkuMaterial')(sequelize);
-
+var rokovaniaMaterial = require('./model/rokovaniaMaterial')(sequelize);
+var supremeCourtMaterial = require('./model/supremeCourtMaterial')(sequelize);
+var uvoMaterial = require('./model/uvoMaterial')(sequelize);
 // server
 
 var app = express();
@@ -55,6 +58,66 @@ app.get('/api/pppMaterial', function(req,res){
 app.get('/api/nkuMaterial', function(req,res){
 
     nkuMaterial.findAll({
+        order: [['date','DESC']],
+        limit: 10
+    }).then(
+        function (a) {
+
+            res.json(a);
+
+        },
+        function (a) {
+
+            res.json(a);
+
+        }
+    );
+
+});
+
+app.get('/api/rokovaniaMaterial', function(req,res){
+
+    rokovaniaMaterial.findAll({
+        order: [['date','DESC']],
+        limit: 10
+    }).then(
+        function (a) {
+
+            res.json(a);
+
+        },
+        function (a) {
+
+            res.json(a);
+
+        }
+    );
+
+});
+
+app.get('/api/supremeCourtMaterial', function(req,res){
+
+    supremeCourtMaterial.findAll({
+        order: [['date','DESC']],
+        limit: 10
+    }).then(
+        function (a) {
+
+            res.json(a);
+
+        },
+        function (a) {
+
+            res.json(a);
+
+        }
+    );
+
+});
+
+app.get('/api/uvoMaterial', function(req,res){
+
+    uvoMaterial.findAll({
         order: [['date','DESC']],
         limit: 10
     }).then(
