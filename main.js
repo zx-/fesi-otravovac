@@ -28,7 +28,16 @@ function run () {
         rokovania: {
             parser: require('./parser/rokovania_parser.js')(FESIO.rokovania),
             model: require('./model/rokovaniaMaterial.js')(sequelize)
+        },
+        supreme_court: {
+            parser: require('./parser/supreme_court_parser.js')(FESIO.supremeCourt),
+            model: require('./model/supremeCourtMaterial.js')(sequelize)
+        },
+        uvo: {
+            parser: require('./parser/uvo_parser.js')(FESIO.uvo),
+            model: require('./model/uvoMaterial.js')(sequelize)
         }
+
     };
 
     for (var p in sites) {
