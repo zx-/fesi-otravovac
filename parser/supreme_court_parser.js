@@ -23,23 +23,16 @@ module.exports = function ( args ) {
         var $ = cheerio.load(doc);
         var materials = [];
 
-        var rows = $($('table.grid')[0]);
-        rows = rows.find('tbody')[0];
-        rows = $(rows).find('tr');
+        var rows = $('.news-list');
 
         rows.each(function(index,element){
 
-            var tds = $(element).find('td');
-
             var material = {
 
-                number:     $(tds[0]).text().replace(/\s/g,''),
-                rokovanie:  $($(tds[1]).find('div')).text().replace(/^\s*/g,''),
-                date:       helper.dateFromString($(tds[2]).text()),
-                materials:  absoluteUrlFromElement($($(tds[3]).find('a')[0])),
-                recordings: absoluteUrlFromElement($($(tds[4]).find('a')[0])),
-                resolution: absoluteUrlFromElement($($(tds[5]).find('a')[0])),
-                communique: absoluteUrlFromElement($($(tds[6]).find('a')[0]))
+                name:   $($(element).find('h2')).text(),
+                href:   absoluteUrlFromElement($($($(element).find('h2')).find('a')[0])),
+                date:   helper.dateFromString($($(element).find('.datum')[0]).text().replace(/-/g,'')),
+                description:  $($(element).find('.popis')).text()
 
             };
 
