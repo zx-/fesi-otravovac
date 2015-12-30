@@ -16,7 +16,8 @@ FESIO.nku = {
 
 FESIO.uvo = {
     base_url: 'https://www2.uvo.gov.sk',
-    parse_url: 'https://www2.uvo.gov.sk/evestnik'
+    parse_url: 'https://www2.uvo.gov.sk/evestnik',
+    parse_types: [6,8,18] // corresponds to dom element ids
 };
 
 FESIO.rokovania = {

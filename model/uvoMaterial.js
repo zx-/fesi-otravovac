@@ -20,6 +20,9 @@ module.exports = function ( sequelize ) {
         },
         type:{
             type: Sequelize.INTEGER
+        },
+        subtype:{
+            type: Sequelize.TEXT
         }
 
     }, {
