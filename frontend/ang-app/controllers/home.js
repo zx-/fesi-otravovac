@@ -16,6 +16,12 @@ controllers.controller('home',[
 
         }
 
+        $scope.types = [];
+        $scope.types[6] = "Vyhlasenia o vyhlaseni ver. obst";
+        $scope.types[8] = "Vyhlasenia o zruseni ver. obst";
+        $scope.types[18] = "Uzavreti zmluvy";
+
+
         $scope.getDateString = function (date) {
 
             return date.getDate()+'. '+(date.getMonth()+1)+'. '+date.getFullYear();

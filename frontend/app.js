@@ -6,7 +6,8 @@ var app = angular.module('fesi-otravovac-app',[
 
     'ngRoute',
     'controllers',
-    'restangular'
+    'restangular',
+    'angular.filter'
 
 ]);
 
@@ -15,7 +16,7 @@ app.config([
     '$routeProvider',
     'RestangularProvider',
 
-    function ( $routeProvider, RestangularProvider ) {
+    function ( $routeProvider, RestangularProvider, af ) {
 
         $routeProvider.
             when('/', {

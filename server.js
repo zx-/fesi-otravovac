@@ -119,7 +119,7 @@ app.get('/api/uvoMaterial', function(req,res){
 
     uvoMaterial.findAll({
         order: [['date','DESC']],
-        limit: 10
+        limit: 40
     }).then(
         function (a) {
 
