@@ -48,7 +48,14 @@ function run () {
 
             for (var i = 0; i < res.length; i++) {
 
-                this.create(res[i]);
+                if (this.checkAndCreate) {
+
+                    this.checkAndCreate(res[i], null, function (r) {
+                        console.log('new instance');
+                        console.log(r);
+                    });
+
+                }
 
             }
 
