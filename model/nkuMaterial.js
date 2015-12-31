@@ -23,6 +23,36 @@ module.exports = function ( sequelize ) {
         }
 
     }, {
+        classMethods:{
+
+            checkAndCreate: function ( values, options, newCallback ){
+
+                this.findAll({
+                    where: {
+                        name: values.name,
+                        date: values.date,
+                        publisher: values.publisher
+                    }
+                }).then(
+                    function ( res ) {
+
+                        if( res.length == 0 ){
+
+                            this.create(values, options).then(
+                                newCallback,
+                                console.log
+                            );
+
+                        }
+
+                    }.bind(this),
+                    console.log
+                );
+
+            }
+
+        },
+
         freezeTableName: true // Model tableName will be the same as the model name
     });
 
