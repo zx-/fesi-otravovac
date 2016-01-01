@@ -42,6 +42,7 @@ module.exports = function ( cfg ) {
     function sendMails ( materials, subject, message ) {
 
         materials.site = mailOpts.site;
+        materials.message = message;
 
         for(var i = 0; i < mailOpts.to.length; i++){
 
@@ -51,8 +52,7 @@ module.exports = function ( cfg ) {
                 to: mailOpts.to[i],
                 subject: subject,
                 text: 'Salam',
-                html: newMailTemplate.render(materials),
-                message: message
+                html: newMailTemplate.render(materials)
 
             };
 
