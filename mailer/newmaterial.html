@@ -1,0 +1,129 @@
+<h1>New materials from <a href="{{site}}">Fesi-otravovac</a></h1>
+<p>{{message}}</p>
+
+<h3>
+    <a href="https://lt.justice.gov.sk/Public/AllMaterialsList.aspx?instEID=-1&lCategories=1048574&langEID=1">
+        Portál právnych predpisov
+    </a>
+</h3>
+
+Number of new materials: {{ppp.length}}
+
+<div>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>date</th>
+            <th>state</th>
+            <th>publisher</th>
+        </tr>
+        <template repeat="{{material in ppp}}">
+        <tr>
+            <td><a href="{{material.href}}">{{material.name}}</a></td>
+            <td>{{material.date}}</td>
+            <td>{{material.state}}</td>
+            <td>{{material.publisher}}</td>
+        </tr>
+        </template>
+    </table>
+</div>
+
+<h3>
+    <a href="https://www.nku.gov.sk/spravy-o-vysledkoch-kontrol-od-roku-2012">
+        Najvyšší kontrolný úrad Slovenskej republiky
+    </a>
+</h3>
+
+Number of new materials: {{nku.length}}
+
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th>name</th>
+            <th>date</th>
+            <th>publisher</th>
+        </tr>
+        <template repeat="{{material in nku}}">
+        <tr>
+            <td><a href="{{material.href}}">{{material.name}}</a></td>
+            <td>{{material.date}}</td>
+            <td><a href="{{material.publisherhref}}">{{material.publisher}}</a></td>
+        </tr>
+        </template>
+    </table>
+</div>
+
+<h3>
+    <a href="http://www.rokovania.sk/Rokovanie.aspx">
+        Rokovania vlády SR
+    </a>
+</h3>
+
+Number of new materials: {{rokovania.length}}
+
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th>number</th>
+            <th>rokovanie</th>
+            <th>date</th>
+            <th>materials</th>
+            <th>recordings</th>
+            <th>resolution</th>
+        </tr>
+        <template repeat="{{material in rokovania}}">
+        <tr>
+            <td>{{material.number}}</td>
+            <td>{{material.rokovanie}}</td>
+            <td>{{material.date}}</td>
+            <td><a href="{{material.materials}}" ng-show="material.materials != null">mat</a></td>
+            <td><a href="{{material.recordings}}" ng-show="material.recordings != null">rec</a></td>
+            <td><a href="{{material.resolution}}" ng-show="material.resolution != null">res</a></td>
+        </tr>
+        </template>
+    </table>
+</div>
+
+<div class="panel-heading">
+    <h3>
+        <a href="http://www.supcourt.gov.sk/tlacove-spravy/">
+            NAJVYŠŠÍ SÚD - Tlačové správy
+        </a>
+    </h3>
+</div>
+
+Number of new materials: {{supreme_court.length}}
+
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th>name</th>
+            <th>date</th>
+            <th>description</th>
+        </tr>
+        <template repeat="{{material in supreme_court}}">
+        <tr>
+            <td><a href="{{material.href}}">{{material.name}}</a></td>
+            <td>{{material.date}}</td>
+            <td>{{material.description}}</td>
+        </tr>
+        </template>
+    </table>
+</div>
+
+<h3>
+    <a href="https://www2.uvo.gov.sk/evestnik">
+        Úrad pre verejné obstarávanie
+    </a>
+</h3>
+
+<ul class="list-style-none">
+    <template repeat="{{material in uvo}}">
+    <li>
+        <a href="{{material.href}}">{{material.name}}</a>
+        {{material.description}}
+        {{material.subtype}}
+        {{material.date}}
+    </li>
+    </template>
+</ul>
