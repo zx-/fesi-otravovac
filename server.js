@@ -141,8 +141,47 @@ app.get('*', function(req, res) {
 });
 
 
-
-
-
 app.listen(port);
 console.log("App listening on port ",port);
+
+
+/// CRAWLER
+
+
+var taskswrapper = require('./taskwrapper.js');
+
+var CronJob = require('cron').CronJob;
+
+new CronJob('00 */30 * * * *', function() {
+
+    taskswrapper.checkSites();
+
+}, null, true, 'Europe/Bratislava');
+
+new CronJob('00 04 06 * * *', function() {
+
+    taskswrapper.sendDaily();
+
+}, null, true, 'Europe/Bratislava');
+
+new CronJob('00 14 06 * * *', function() {
+
+    taskswrapper.clearBuffer();
+
+}, null, true, 'Europe/Bratislava');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

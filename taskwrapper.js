@@ -51,13 +51,16 @@ function sendDaily(){
 
 }
 
+function clearBuffer(){
 
+    buffer = {};
+
+}
 
 module.exports = {
 
     checkSites: checkSites,
-    sendDaily: sendDaily
+    sendDaily: sendDaily,
+    clearBuffer: clearBuffer
 
 };
-
-checkSites();
