@@ -36,7 +36,7 @@ module.exports = function ( args ) {
             };
 
             var popis = $($(element).find('.popis'));
-            popis.find('.datum').remove;
+            popis.find('.datum').remove();
             material.description = popis.text();
 
             materials.push(material)
