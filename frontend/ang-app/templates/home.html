@@ -134,7 +134,7 @@
             <li ng-repeat="(k2, v2) in v | groupBy: 'subtype' ">
                 <p><b>{{k2}}</b></p>
                 <ul class="list-style-none">
-                    <li ng-repeat="material in v2"  class="uvo-item" >
+                    <li ng-repeat="material in v2"  class="uvo-item clearfix" >
                         <a href="{{material.href}}">{{material.name}}</a>
                         {{material.description}} <span class="text-muted pull-right">{{getDateString(material.date)}}</span>
                     </li>
