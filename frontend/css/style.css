@@ -11,7 +11,23 @@
 }
 
 .uvo-item {
-    margin-bottom: 5px;
+    padding: 8px;
+    line-height: 0.9;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+.uvo-item:last-child{
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 9px;
+}
+
+/*.uvo-item > span {*/
+    /*margin-right: 7px;*/
+/*}*/
+
+.uvo-item > span {
+    margin-right: 2.5%;
 }
 
 .content {

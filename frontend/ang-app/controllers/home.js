@@ -24,7 +24,7 @@ controllers.controller('home',[
 
         $scope.getDateString = function (date) {
 
-            return date.getDate()+'. '+(date.getMonth()+1)+'. '+date.getFullYear();
+            return date.getDate()+'.'+(date.getMonth()+1)+'.'+date.getFullYear();
 
         };
 

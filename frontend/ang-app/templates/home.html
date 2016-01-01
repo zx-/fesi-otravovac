@@ -105,15 +105,15 @@
     </div>
 
     <div class="panel-body">
+
         <ul ng-repeat="(k, v) in uvoMaterials | groupBy: 'type' " class="list-style-none">
             <h4>{{types[k]}}</h4>
             <li ng-repeat="(k2, v2) in v | groupBy: 'subtype' ">
                 <p><b>{{k2}}</b></p>
-                <ul>
+                <ul class="list-style-none">
                     <li ng-repeat="material in v2"  class="uvo-item" >
-                        name: <a href="{{material.href}}">{{material.name}}</a><br>
-                        date: {{getDateString(material.date)}}<br>
-                        description: {{material.description}}
+                        <a href="{{material.href}}">{{material.name}}</a>
+                        {{material.description}} <span class="text-muted pull-right">{{getDateString(material.date)}}</span>
                     </li>
                 </ul>
             </li>
