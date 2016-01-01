@@ -15,8 +15,9 @@ app.config([
 
     '$routeProvider',
     'RestangularProvider',
+    '$locationProvider',
 
-    function ( $routeProvider, RestangularProvider, af ) {
+    function ( $routeProvider, RestangularProvider, $locationProvider ) {
 
         $routeProvider.
             when('/', {
@@ -25,6 +26,8 @@ app.config([
             });
 
         RestangularProvider.setBaseUrl('/api');
+
+        $locationProvider.html5Mode(true);
     }
 
 ]);
