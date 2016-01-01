@@ -51,11 +51,13 @@ module.exports = function ( args ) {
                         name: item.find('a').text(),
                         date: new Date(),
                         href: item.find('a').attr('href'),
-                        description: item.remove('a').text(),
                         type: type,
                         subtype: sub_type
 
                     };
+
+                    item.find('a').remove();
+                    material.description = item.text();
 
                     materials.push(material)
 

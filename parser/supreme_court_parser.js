@@ -32,9 +32,12 @@ module.exports = function ( args ) {
                 name:   $($(element).find('h2')).text(),
                 href:   absoluteUrlFromElement($($($(element).find('h2')).find('a')[0])),
                 date:   helper.dateFromString($($(element).find('.datum')[0]).text().replace(/-/g,'')),
-                description:  $($(element).find('.popis')).text()
 
             };
+
+            var popis = $($(element).find('.popis'));
+            popis.find('.datum').remove;
+            material.description = popis.text();
 
             materials.push(material)
 
