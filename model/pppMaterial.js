@@ -1,8 +1,8 @@
 /**
  * Created by z on 19.12.2015.
  */
-
 var Sequelize = require('sequelize');
+var Promise = require('bluebird');
 
 module.exports = function ( sequelize ) {
 
