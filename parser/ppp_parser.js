@@ -5,6 +5,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var helper = require('./helper');
+var Promise = require('bluebird');
 
 module.exports = function ( args ) {
 
@@ -45,16 +46,32 @@ module.exports = function ( args ) {
 
     }
 
-    function run ( callback ) {
+    function run () {
 
-        request(parse_url, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
+        return new Promise(function (resolve,reject) {
 
-                var mats = parse( body );
+            request.get({
+                    url: parse_url,
+                    headers: {
+                        'User-Agent': 'curl/7.31.0',
+                        'accept' : '*/*'
+                    }
+                },
+                function (error, response, body) {
+                    if (!error && response.statusCode == 200) {
 
-                callback(mats)
+                        var mats = parse( body );
 
-            }
+                        resolve(mats)
+
+                    } else {
+
+                        reject(error);
+
+                    }
+                }
+            );
+
         });
 
     }

@@ -2,6 +2,8 @@
  * Created by z on 18.12.2015.
  */
 
+var Promise = require('bluebird');
+
     // CONFIGS
 var FESIO = require('./configuration.js');
 var DB_CFG = require('./db_config.js');
@@ -9,7 +11,7 @@ var DB_CFG = require('./db_config.js');
 
 // MODEL
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize(DB_CFG.conString);
+var sequelize = new Sequelize(DB_CFG.conString,{ logging: false });
 
 var sites = {
     ppp: {
@@ -39,43 +41,94 @@ var sites = {
 
 function run () {
 
-    for (var p in sites) {
+    var parsingStartedPromises = {};
 
-        var site = sites[p];
+    for (var k in sites) {
 
-        site.parser.parse(function (res) {
+        var site = sites[k];
 
-            for (var i = 0; i < res.length; i++) {
+        var p = site.parser.parse().then(function (res) {
 
-                if (this.checkAndCreate) {
+                var returnPromises = [];
 
-                    this.checkAndCreate(res[i]).then(function (r) {
-                        console.log('new instance');
-                        console.log(r);
-                    },
-                    console.log);
+                for (var i = 0; i < res.length; i++) {
+
+                    if (this.checkAndCreate) {
+
+                        returnPromises.push(this.checkAndCreate(res[i]).reflect());
+
+                    }
 
                 }
 
-            }
+                return returnPromises;
 
-        }.bind(site.model));
+            }.bind(site.model),
+            console.log
+
+        ).reflect();
+
+        parsingStartedPromises[k] = p;
 
     }
 
+    return new Promise(function (resolve, reject) {
+
+        Promise.props(parsingStartedPromises).then(
+            function (sitePromises) {
+
+                var siteMaterialPromises = {};
+
+                for (var key in sitePromises) {
+
+                    if (sitePromises[key].isFulfilled()) {
+
+                        siteMaterialPromises[key] = Promise.all(sitePromises[key].value());
+
+                    }
+
+                }
+
+                return Promise.props(siteMaterialPromises);
+
+            },
+            function (error) {
+
+                console.error("All sites materials promise rejected");
+                console.error(error);
+
+            }
+        ).then(
+            function (siteMaterial) {
+
+                var newItems = {};
+
+                for( var siteName in siteMaterial ) {
+
+                    var materialsPromises = siteMaterial[siteName];
+
+                    newItems[siteName] = [];
+
+                    for ( var i = 0; i < materialsPromises.length; i++ ) {
+
+                        if ( materialsPromises[i].isFulfilled() ) {
+
+                            newItems[siteName].push( materialsPromises[i].value() );
+
+                        }
+
+                    }
+
+                }
+
+                resolve(newItems);
+
+            },
+            reject
+        );
+
+    });
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-run();
+module.exports = run;
