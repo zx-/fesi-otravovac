@@ -33,26 +33,34 @@ module.exports = function ( sequelize ) {
 
             checkAndCreate: function ( values, options, newCallback ){
 
-                this.findAll({
-                    where: {
-                        number: values.number,
-                        date: values.date
-                    }
-                }).then(
-                    function ( res ) {
+                return new Promise (function(resolve,reject){
 
-                        if( res.length == 0 ){
-
-                            this.create(values, options).then(
-                                newCallback,
-                                console.log
-                            );
-
+                    this.findAll({
+                        where: {
+                            number: values.number,
+                            date: values.date
                         }
+                    }).then(
+                        function ( res ) {
 
-                    }.bind(this),
-                    console.log
-                );
+                            if( res.length == 0 ){
+
+                                this.create(values, options).then(
+                                    resolve,
+                                    reject
+                                );
+
+                            } else {
+
+                                reject("Already exists");
+
+                            }
+
+                        }.bind(this),
+                        reject
+                    );
+
+                }.bind(this));
 
             }
 

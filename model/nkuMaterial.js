@@ -2,6 +2,7 @@
  * Created by z on 24.12.2015.
  */
 var Sequelize = require('sequelize');
+var Promise = require('bluebird');
 
 module.exports = function ( sequelize ) {
 
@@ -25,29 +26,37 @@ module.exports = function ( sequelize ) {
     }, {
         classMethods:{
 
-            checkAndCreate: function ( values, options, newCallback ){
+            checkAndCreate: function ( values, options ){
 
-                this.findAll({
-                    where: {
-                        name: values.name,
-                        date: values.date,
-                        publisher: values.publisher
-                    }
-                }).then(
-                    function ( res ) {
+                return new Promise (function(resolve,reject){
 
-                        if( res.length == 0 ){
-
-                            this.create(values, options).then(
-                                newCallback,
-                                console.log
-                            );
-
+                    this.findAll({
+                        where: {
+                            name: values.name,
+                            date: values.date,
+                            publisher: values.publisher
                         }
+                    }).then(
+                        function ( res ) {
 
-                    }.bind(this),
-                    console.log
-                );
+                            if( res.length == 0 ){
+
+                                this.create(values, options).then(
+                                    resolve,
+                                    reject
+                                );
+
+                            } else {
+
+                                reject("Already exists");
+
+                            }
+
+                        }.bind(this),
+                        reject
+                    );
+
+                }.bind(this));
 
             }
 
