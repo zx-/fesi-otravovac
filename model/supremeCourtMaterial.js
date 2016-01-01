@@ -24,7 +24,7 @@ module.exports = function ( sequelize ) {
     }, {
         classMethods:{
 
-            checkAndCreate: function ( values, options, newCallback ){
+            checkAndCreate: function ( values, options ){
 
                 return new Promise (function(resolve,reject){
 

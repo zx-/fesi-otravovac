@@ -11,34 +11,33 @@ var DB_CFG = require('./db_config.js');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize(DB_CFG.conString);
 
+var sites = {
+    ppp: {
+
+        parser: require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov),
+        model: require('./model/pppMaterial.js')(sequelize)
+
+    },
+    nku: {
+        parser: require('./parser/nku_parser.js')(FESIO.nku),
+        model: require('./model/nkuMaterial.js')(sequelize)
+    },
+    rokovania: {
+        parser: require('./parser/rokovania_parser.js')(FESIO.rokovania),
+        model: require('./model/rokovaniaMaterial.js')(sequelize)
+    },
+    supreme_court: {
+        parser: require('./parser/supreme_court_parser.js')(FESIO.supremeCourt),
+        model: require('./model/supremeCourtMaterial.js')(sequelize)
+    },
+    uvo: {
+        parser: require('./parser/uvo_parser.js')(FESIO.uvo),
+        model: require('./model/uvoMaterial.js')(sequelize)
+    }
+
+};
 
 function run () {
-
-    var sites = {
-        ppp: {
-
-            parser: require('./parser/ppp_parser.js')(FESIO.portal_pravnych_predpisov),
-            model: require('./model/pppMaterial.js')(sequelize)
-
-        },
-        nku: {
-            parser: require('./parser/nku_parser.js')(FESIO.nku),
-            model: require('./model/nkuMaterial.js')(sequelize)
-        },
-        rokovania: {
-            parser: require('./parser/rokovania_parser.js')(FESIO.rokovania),
-            model: require('./model/rokovaniaMaterial.js')(sequelize)
-        },
-        supreme_court: {
-            parser: require('./parser/supreme_court_parser.js')(FESIO.supremeCourt),
-            model: require('./model/supremeCourtMaterial.js')(sequelize)
-        },
-        uvo: {
-            parser: require('./parser/uvo_parser.js')(FESIO.uvo),
-            model: require('./model/uvoMaterial.js')(sequelize)
-        }
-
-    };
 
     for (var p in sites) {
 
@@ -50,10 +49,11 @@ function run () {
 
                 if (this.checkAndCreate) {
 
-                    this.checkAndCreate(res[i], null, function (r) {
+                    this.checkAndCreate(res[i]).then(function (r) {
                         console.log('new instance');
                         console.log(r);
-                    });
+                    },
+                    console.log);
 
                 }
 
@@ -64,7 +64,6 @@ function run () {
     }
 
 }
-
 
 
 
